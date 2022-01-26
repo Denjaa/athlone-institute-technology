@@ -1,22 +1,9 @@
-
-JENKINS_USER = "srvAP143212dev"
-JENKINS_NODE_LABEL = "RE_UBUNTU_DEV"
-
 pipeline {
-    agent {
-        label "${JENKINS_NODE_LABEL}"
-    }
-
-    parameters {
-        choice(choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'], name: 'NUMBER_SERVERS')
-        choice(choices: ['Activate', 'De-Activate'], name: 'SERVICE_TYPE')
-    }
-
+    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
     stages {
-
-        stage("Checkout Git") {
-            script {
-                sh(""" echo stage1""")
+        stage('build') {
+            steps {
+                sh 'mvn --version'
             }
         }
     }
