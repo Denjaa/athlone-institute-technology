@@ -18,19 +18,6 @@ pipeline {
             script {
                 sh(""" echo stage1""")
             }
-            
-        }
-
-        stage("Switching Off Servers") {
-            script {
-                sh(""" echo stage1""")
-            }
-        }
-
-        stage("Switching On Servers") {
-            script {
-                sh(""" echo stage1""")
-            }
         }
     }
 }
