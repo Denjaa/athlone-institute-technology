@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'SL202_win'
-    }
+    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
     stages {
         stage("Fetch repository") {
             steps {
@@ -10,30 +8,29 @@ pipeline {
         }
         stage('Run test') {
             steps {
-                bat 'cd d:/SL202_Data/workspace/Front-end-SwiftNL/Sanctie_Regressie_Workflows_WCM'
-                bat 'mvn clean test -f d:/SL202_Data/workspace/Front-end-SwiftNL/Sanctie_Regressie_Workflows_WCM/pom.xml -Dtest=TestRunner'
+                sh 'mvn --version'
             }
         }
     }
-    post {
-        always {
-            echo 'Test run completed'
-            cucumber buildStatus: 'UNSTABLE', failedFeaturesNumber: 999, failedScenariosNumber: 999, failedStepsNumber: 3, fileIncludePattern: '**/*.json', skippedStepsNumber: 999
-        }
-        success {
-            echo 'Successfully!'
-        }
-        failure {
-            echo 'Failed!'
-        }
-        unstable {
-            echo 'This will run only if the run was marked as unstable'
-        }
-        changed {
-            echo 'This will run only if the state of the Pipeline has changed'
-            echo 'For example, if the Pipeline was previously failing but is now successful'
-        }
-    }
+//    post {
+//        always {
+//            echo 'Test run completed'
+//            cucumber buildStatus: 'UNSTABLE', failedFeaturesNumber: 999, failedScenariosNumber: 999, failedStepsNumber: 3, fileIncludePattern: '**/*.json', skippedStepsNumber: 999
+//        }
+//        success {
+//            echo 'Successfully!'
+//        }
+//        failure {
+//            echo 'Failed!'
+//        }
+//        unstable {
+//            echo 'This will run only if the run was marked as unstable'
+//        }
+//        changed {
+//            echo 'This will run only if the state of the Pipeline has changed'
+//            echo 'For example, if the Pipeline was previously failing but is now successful'
+//        }
+//    }
     options {
         timeout(time: 60, unit: 'MINUTES')
     }
