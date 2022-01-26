@@ -15,6 +15,7 @@ pipeline {
             }
         }
     }
+}
 //    post {
 //        always {
 //            echo 'Test run completed'
@@ -34,7 +35,7 @@ pipeline {
 //            echo 'For example, if the Pipeline was previously failing but is now successful'
 //        }
 //    }
-    options {
-        timeout(time: 60, unit: 'MINUTES')
-    }
-}
+//    options {
+//        timeout(time: 60, unit: 'MINUTES')
+//    }
+//}
