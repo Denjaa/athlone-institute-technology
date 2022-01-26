@@ -1,10 +1,5 @@
-
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.8.4-openjdk-11-slim'
-        }
-    }
+    agent any
     stages {
         stage('Initialize'){
             steps {
@@ -13,8 +8,9 @@ pipeline {
         }
         stage('Push to Docker Registry'){
             steps {
-                sh ('''mvn --version''')
+                withCredentials([usernamePassword(credentialsId: 'dockerHubAccount', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    pushToImage(CONTAINER_NAME, CONTAINER_TAG, USERNAME, PASSWORD)
+                }
             }
         }
-    }
-}
+    }}
