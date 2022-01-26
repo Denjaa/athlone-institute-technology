@@ -1,5 +1,4 @@
 pipeline {
-    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
     stages {
         stage("Fetch repository") {
             steps {
@@ -8,9 +7,11 @@ pipeline {
         }
         stage('Run test') {
             steps {
-                def dockerHome = tool 'myDocker'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
-                sh 'mvn --version'
+                script {
+                    def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    sh 'mvn --version'
+                }
             }
         }
     }
