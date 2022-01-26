@@ -1,3 +1,4 @@
+
 pipeline {
     agent {
         docker {
@@ -10,10 +11,9 @@ pipeline {
                 def dockerHome = tool 'myDocker'
                 env.PATH = "${dockerHome}/bin:${env.PATH}"                }
         }
-
-        stage('build') {
+        stage('Push to Docker Registry'){
             steps {
-                sh 'mvn --version'
+                sh ('''mvn --version''')
             }
         }
     }
