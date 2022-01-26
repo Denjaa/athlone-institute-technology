@@ -7,10 +7,6 @@ pipeline {
         label "${JENKINS_NODE_LABEL}"
     }
 
-    environment {
- 
-    }
-
     parameters {
         choice(choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'], name: 'NUMBER_SERVERS')
         choice(choices: ['Activate', 'De-Activate'], name: 'SERVICE_TYPE')
@@ -19,15 +15,22 @@ pipeline {
     stages {
 
         stage("Checkout Git") {
+            script {
+                sh(""" echo stage1""")
+            }
             
         }
 
         stage("Switching Off Servers") {
-            
+            script {
+                sh(""" echo stage1""")
+            }
         }
 
         stage("Switching On Servers") {
-
+            script {
+                sh(""" echo stage1""")
+            }
         }
     }
 }
