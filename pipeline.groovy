@@ -8,6 +8,8 @@ pipeline {
         }
         stage('Run test') {
             steps {
+                def dockerHome = tool 'myDocker'
+                env.PATH = "${dockerHome}/bin:${env.PATH}"
                 sh 'mvn --version'
             }
         }
