@@ -7,9 +7,8 @@ pipeline {
       }
       steps {
           script {
-              def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
-            sh 'mvn --version'
+
+            sh 'sudo apt-get install docker.io'
 
           }
             
