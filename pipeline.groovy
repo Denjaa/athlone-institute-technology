@@ -1,4 +1,3 @@
-@Library(['eire-pipeline-global-utilities']) _
 
 JENKINS_USER = "srvAP143212dev"
 JENKINS_NODE_LABEL = "RE_UBUNTU_DEV"
