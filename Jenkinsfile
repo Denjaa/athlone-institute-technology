@@ -11,11 +11,17 @@ pipeline {
                             sh ('''
                                 chmod +x gradlew
                                 ./gradlew sonarqube
-                                
+
                                  ''')
                         }
                     }
-                }
+        }
+        stage('Quality Gate') {
+                    steps {
+                        waitForQualityGate abortPipeline: true
+                    }
+        }
+
         stage('Build') {
             steps {
                 
