@@ -9,7 +9,7 @@ pipeline {
             steps {
                 
                 sh ('''
-                    sudo chmod +x ./gradlew
+                    chmod +x gradlew
                     ./gradlew assemble
                 ''')
             }
