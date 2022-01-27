@@ -1,3 +1,20 @@
+Step 1:
+Use command "docker compose up" to activate the Jenkins and SonarQube in seperate command line
+
+Step 2:
+use in seperate command line "ngrok.exe http 8082" to connect webhook to proxy and make change to webhook on git page
+
+SonarQube login:
+login: admin
+pass: admin1
+
+
+
+
+
+
+
+
 # Spin up docker
 docker container run -d -p 8082:8080 -v jenkinsvol1:/var/jenkins_home --name jenkins-local jenkins/jenkins:lts
 
