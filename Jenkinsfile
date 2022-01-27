@@ -33,7 +33,6 @@ pipeline {
                     steps {
                         sh ('''
                         export DOCKER_HOST="tcp://host.docker.internal:2375"
-                        cd /build/libs
                         docker build .
 
                         ''')
