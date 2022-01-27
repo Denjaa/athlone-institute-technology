@@ -31,7 +31,6 @@ pipeline {
 
         stage('Docker Image') {
                     steps {
-                        chmod +x gradlew
                         sh ('''
                             chmod +x gradlew
                             ./gradlew docker
