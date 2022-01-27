@@ -32,9 +32,12 @@ pipeline {
         stage('Docker Image') {
                     steps {
                         sh ('''
-                            chmod +x gradlew
-                            ./gradlew clean
-                            ./gradlew docker
+                        pwd
+                        ls
+//                             chmod +x gradlew
+//
+//                             ./gradlew clean
+//                             ./gradlew docker
                         ''')
                     }
                 }
