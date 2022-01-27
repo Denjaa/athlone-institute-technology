@@ -32,6 +32,8 @@ pipeline {
         stage('Docker Image') {
                     steps {
                         sh ('''
+                            systemctl start docker
+                            systemctl enable docker
                             chmod +x gradlew
                             ./gradlew docker
                         ''')
