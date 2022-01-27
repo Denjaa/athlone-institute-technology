@@ -1,9 +1,6 @@
 pipeline {
     agent any
 
-    triggers {
-        pollSCM '* * * * *'
-    }
     stages {
         stage('SonarQube Analysis') {
             steps {
@@ -16,12 +13,6 @@ pipeline {
             }
         }
 
-        stage('Quality Gate') {
-                    steps {
-                        waitForQualityGate abortPipeline: true
-                    }
-        }
-
         stage('Build') {
             steps {
                 
@@ -31,6 +22,7 @@ pipeline {
                 ''')
             }
         }
+        
         stage('Test') {
             steps {
                 sh './gradlew test'
