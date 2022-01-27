@@ -10,8 +10,7 @@ pipeline {
                         withSonarQubeEnv('SonarQube') {
                             sh ('''
                                 chmod +x gradlew
-                                ./gradlew sonarqube
-
+                                ./gradlew sonarqube 
                                  ''')
                         }
                     }
