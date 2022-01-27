@@ -22,11 +22,17 @@ pipeline {
                 ''')
             }
         }
-        
+
         stage('Test') {
             steps {
                 sh './gradlew test'
             }
         }
+
+        stage('Docker Image') {
+                    steps {
+                        sh './gradlew docker'
+                    }
+                }
     }
 }
