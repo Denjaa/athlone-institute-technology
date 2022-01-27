@@ -32,6 +32,8 @@ pipeline {
         stage('Docker Image') {
                     steps {
                         sh ('''
+                            ls -l /var/run/docker.sock
+                            sudo service docker restart
                             chmod +x gradlew
                             ./gradlew clean
                             ./gradlew docker
