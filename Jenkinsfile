@@ -6,15 +6,16 @@ pipeline {
     }
     stages {
         stage('SonarQube Analysis') {
-                    steps {
-                        withSonarQubeEnv('SonarQube') {
-                            sh ('''
-                                chmod +x gradlew
-                                ./gradlew sonarqube 
-                                 ''')
-                        }
-                    }
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh ('''
+                        chmod +x gradlew
+                        ./gradlew sonarqube
+                    ''')
+                }
+            }
         }
+
         stage('Quality Gate') {
                     steps {
                         waitForQualityGate abortPipeline: true
