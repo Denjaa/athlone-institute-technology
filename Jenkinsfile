@@ -33,7 +33,8 @@ pipeline {
                     steps {
                         sh ('''
                             chmod +x gradlew
-                            ./gradlew build docker
+                            ./gradlew clean
+                            ./gradlew docker
                         ''')
                     }
                 }

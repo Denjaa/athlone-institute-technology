@@ -6,7 +6,6 @@ plugins {
     id 'pl.allegro.tech.build.axion-release' version '1.13.6'
     id 'com.palantir.docker' version '0.31.0'
     id 'com.palantir.docker-run' version '0.31.0'
-    id 'jp.classmethod.aws.reboot.cloudformation' version '0.45'
     id "org.sonarqube" version "3.0"
 }
 
