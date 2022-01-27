@@ -33,7 +33,6 @@ pipeline {
                     steps {
                         sh ('''
                             chmod +x gradlew
-                            service docker restart
                             ./gradlew build
                             ./gradlew docker
                         ''')
