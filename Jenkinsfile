@@ -34,6 +34,7 @@ pipeline {
                         sh ('''
                         pwd
                         ls
+                        docker build .
 //                             chmod +x gradlew
 //
 //                             ./gradlew clean
