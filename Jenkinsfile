@@ -34,7 +34,6 @@ pipeline {
                         sh ('''
                             chmod +x gradlew
                             ./gradlew clean
-                            ./gradlew build
                             ./gradlew docker
                         ''')
                     }
