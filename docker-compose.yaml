@@ -1,5 +1,15 @@
 version: "3"
 services:
+  socat:
+    container_name: socat
+    image: alpine/socat
+    networks:
+      - mynetwork
+    ports:
+      - 2375:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
   sonarqube:
     image: sonarqube:lts
     ports:
