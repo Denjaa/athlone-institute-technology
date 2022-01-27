@@ -1,12 +1,12 @@
 package com.ait.assignment.repository;
 
-import com.ait.assignment.entity.ThemeParkRide;
+import com.ait.assignment.entity.MotorbikeShop;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface ThemeParkRideRepository extends CrudRepository<ThemeParkRide, Long> {
-    List<ThemeParkRide> findByName(String name);
+public interface MotorbikeShopRepository extends CrudRepository<MotorbikeShop, Long> {
+    List<MotorbikeShop> findByName(String name);
 }

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @ToString
 @NoArgsConstructor
-public class ThemeParkRide {
+public class MotorbikeShop {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -22,14 +22,14 @@ public class ThemeParkRide {
     private String name;
     @NotEmpty
     private String description;
-    private int thrillFactor;
-    private int vomitFactor;
+    private int year;
+    private int price;
 
-    public ThemeParkRide(String name, String description, int thrillFactor, int vomitFactor) {
+    public MotorbikeShop(String name, String description, int year, int price) {
         this.name = name;
         this.description = description;
-        this.thrillFactor = thrillFactor;
-        this.vomitFactor = vomitFactor;
+        this.year = year;
+        this.price = price;
     }
 
 }

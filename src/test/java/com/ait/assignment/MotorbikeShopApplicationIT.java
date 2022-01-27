@@ -15,14 +15,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @ExtendWith( SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ThemeParkApplicationIT {
+public class MotorbikeShopApplicationIT {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void getsAllRides() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/ride")
+        mockMvc.perform(MockMvcRequestBuilders.get("/motorbike")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -30,7 +30,7 @@ public class ThemeParkApplicationIT {
 
     @Test
     public void getsSingleRide() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/ride/1")
+        mockMvc.perform(MockMvcRequestBuilders.get("/motorbike/1")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -38,7 +38,7 @@ public class ThemeParkApplicationIT {
 
     @Test
     public void returnsNotFoundForInvalidSingleRide() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/ride/4")
+        mockMvc.perform(MockMvcRequestBuilders.get("/motorbike/4")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andReturn();
@@ -46,8 +46,8 @@ public class ThemeParkApplicationIT {
 
     @Test
     public void addsNewRide() throws Exception {
-        String newRide = "{\"name\":\"Monorail\",\"description\":\"Sedate travelling ride.\",\"thrillFactor\":2,\"vomitFactor\":1}";
-        mockMvc.perform(MockMvcRequestBuilders.post("/ride")
+        String newRide = "{\"name\":\"Ducati Panigali\",\"description\":\"For Sale\",\"year\":2022,\"price\":35000}";
+        mockMvc.perform(MockMvcRequestBuilders.post("/motorbike")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(newRide)
                         .accept(MediaType.APPLICATION_JSON))
