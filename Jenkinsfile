@@ -32,7 +32,7 @@ pipeline {
         stage('Docker Image') {
                     steps {
                         sh ('''
-                            snap start docker
+                            docker start
                             chmod +x gradlew
                             ./gradlew docker
                         ''')
