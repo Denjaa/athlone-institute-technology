@@ -32,7 +32,6 @@ pipeline {
         stage('Docker Image') {
                     steps {
                         sh ('''
-                            gpasswd -a $USER docker
                             systemctl start docker
 
                             chmod +x gradlew
