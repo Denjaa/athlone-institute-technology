@@ -32,8 +32,9 @@ pipeline {
         stage('Docker Image') {
                     steps {
                         sh ('''
-                            docker --version
                             chmod +x gradlew
+                            service docker restart
+                            ./gradlew build
                             ./gradlew docker
                         ''')
                     }
