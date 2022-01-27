@@ -32,11 +32,8 @@ pipeline {
         stage('Docker Image') {
                     steps {
                         sh ('''
-                            systemctl start docker
-
                             chmod +x gradlew
-                            ./gradlew clean
-                            ./gradlew docker
+                            ./gradlew build docker
                         ''')
                     }
                 }
