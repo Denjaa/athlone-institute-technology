@@ -34,7 +34,7 @@ pipeline {
                         sh ('''
                         pwd
                         ls
-                        
+
                         export DOCKER_HOST="tcp://host.docker.internal:2375"
                         chmod +x gradlew
                         ./gradlew clean
