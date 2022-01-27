@@ -32,7 +32,7 @@ pipeline {
         stage('Docker Image') {
                     steps {
                         sh ('''
-                            apt-get install sudo -y
+                            sudo apt-get update 
                             sudo service docker restart
                             chmod +x gradlew
                             ./gradlew clean
