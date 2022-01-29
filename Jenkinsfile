@@ -3,9 +3,9 @@ pipeline {
     agent any
 
     environment {
-        ENV.SONAR = "true"
-        ENV.BRANCH = "main"
-        ENV.GIT = "https://github.com/Denjaa/athlone-institute-technology.git"
+        SONAR = "true"
+        BRANCH = "main"
+        GIT = "https://github.com/Denjaa/athlone-institute-technology.git"
     }
 
     stages {
