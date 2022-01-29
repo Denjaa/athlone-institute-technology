@@ -64,7 +64,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 sh ('''
-                    docker  docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW
+                    docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW
                     docker push morozovd/continious-integration-and-development-assessment:0.1.0-SNAPSHOT
                 ''')
             }
