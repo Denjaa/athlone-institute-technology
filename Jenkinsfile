@@ -18,6 +18,7 @@ pipeline {
                     def scmVars = checkout (
                         changelog: true, poll: true,
                         scm: [
+                            $class: 'GitSCM',
                             branches: [[name: "main"]],
                             userRemoteConfigs: [[credentialsId: "ait-pipeline", url: "https://github.com/Denjaa/athlone-institute-technology.git"]]
                         ]
