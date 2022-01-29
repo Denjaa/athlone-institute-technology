@@ -4,6 +4,7 @@ pipeline {
 
     environment {
         SONAR = "true"
+        DOCKER_HOST = "tcp://host.docker.internal:2375"
     }
 
     stages {
@@ -31,40 +32,31 @@ pipeline {
         stage('SonarQube Analysis') {
             when {
                   expression {
+                    // if trigger is setup as true on top then analysis of code will be performed
+                    // otherwise the step will be skipped
                     SONAR == 'true'
                   }
             }
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh ('''
-                        chmod +x gradlew
-                        ./gradlew sonarqube
-                    ''')
+                    // run the plugin of SonarQube on the code and do the analysis
+                    sh ('./gradlew sonarqube')
                 }
             }
         }
-
-        stage('SonarQube Quality Gate')  {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
-
-
 
         stage('Test') {
             steps {
-                sh './gradlew test'
+                // running the tests that are written for the microservice to make sure everything passes
+                // if tests fail then this stage will fail
+                sh ('./gradlew test')
             }
         }
 
-        stage('Docker Image') {
-                    steps {
-                        sh ('''
-                        export DOCKER_HOST="tcp://host.docker.internal:2375"
-                        docker build .
-                        ''')
-                    }
-                }
+        stage('Build Docker Image') {
+            steps {
+                sh ('docker build .')
+            }
+        }
     }
 }
