@@ -12,26 +12,11 @@ pipeline {
     stages {
         stage("Source Code Checkout") {
             steps {
-                script {
-                    echo "trying to checkout branch  : ${env.GIT_BRANCH}"
-                    def scmVars = checkout (
-                        changelog: true, poll: true,
-                        scm: [
-                            $class: 'GitSCM',
-                            branches: [[name: "main"]],
-                            userRemoteConfigs: [[credentialsId: "ait-pipeline", url: "https://github.com/Denjaa/athlone-institute-technology.git"]]
-                        ]
-                    )
-                    env.CAPTURE_GIT_SHA = scmVars.GIT_COMMIT
-                    echo "${env.CAPTURE_GIT_SHA}"
-                }
-            }
+                deleteDir()
+                git branch: 'main', url: 'https://github.com/Denjaa/athlone-institute-technology.git'
         }
         stage('Build') {
                     steps {
-                        deleteDir()
-                       // pulling down the latest changes from remote repository
-                       git branch: 'main', url: '${GIT}'
 
                         // setting up the running mode on the application of Gradle
                         // running the gradle clean mode to identify a new application
