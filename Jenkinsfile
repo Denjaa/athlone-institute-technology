@@ -5,6 +5,7 @@ pipeline {
     environment {
         SONAR = "true"
         DOCKER_HOST = "tcp://host.docker.internal:2375"
+        DOCKER_HUB_LOGIN = credentials('docker-hub')
     }
 
     stages {
@@ -58,5 +59,14 @@ pipeline {
                 sh ('docker build .')
             }
         }
+
+        stage('Push Docker Image') {
+                    steps {
+                        sh ('
+                            docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW
+                            docker push morozovd/continious-integration-and-development-assessment:0.1.0-SNAPSHOT
+                        ')
+                    }
+                }
     }
 }
