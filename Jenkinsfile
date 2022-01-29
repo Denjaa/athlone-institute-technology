@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        env.SONAR = "true"
+        SONAR = "true"
         BRANCH = "main"
         GIT = "https://github.com/Denjaa/athlone-institute-technology.git"
     }
@@ -11,8 +11,9 @@ pipeline {
     stages {
         stage('Build') {
                     steps {
+                        deleteDir()
                        // pulling down the latest changes from remote repository
-                       git branch: '${ENV.BRANCH}', url: '${ENV.GIT}'
+                       git branch: '${BRANCH}', url: '${GIT}'
 
                         // setting up the running mode on the application of Gradle
                         // running the gradle clean mode to identify a new application
