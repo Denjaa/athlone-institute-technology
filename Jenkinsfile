@@ -14,6 +14,7 @@ pipeline {
             steps {
                 deleteDir()
                 git branch: 'main', url: 'https://github.com/Denjaa/athlone-institute-technology.git'
+            }
         }
         stage('Build') {
                     steps {
