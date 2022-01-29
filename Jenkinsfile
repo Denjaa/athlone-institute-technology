@@ -8,6 +8,7 @@ pipeline {
         GIT = "https://github.com/Denjaa/athlone-institute-technology.git"
         GIT_CREDENTIAL_ID = "ait-pipeline"
         GIT_SSH_CLONE_URL = "ssh://git@github.com:Denjaa/athlone-institute-technology.git"
+        
     }
 
     stages {
