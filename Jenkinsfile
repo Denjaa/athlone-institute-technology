@@ -19,9 +19,9 @@ pipeline {
                         changelog: true, poll: true,
                         scm: [
                             $class: 'GitSCM',
-                            branches: [[name: "${env.GIT_BRANCH}"]],
+                            branches: [[name: "main"]],
                             doGenerateSubmoduleConfigurations: false, gitTool: 'Default', submoduleCfg: [],
-                            userRemoteConfigs: [[credentialsId: "${env.GIT_CREDENTIAL_ID}", url: "${env.GIT_HTTP_CLONE_URL}"]]
+                            userRemoteConfigs: [[credentialsId: "${env.GIT_CREDENTIAL_ID}", url: "https://github.com/Denjaa/athlone-institute-technology.git"]]
                         ]
                     )
                     env.CAPTURE_GIT_SHA = scmVars.GIT_COMMIT
