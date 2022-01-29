@@ -4,9 +4,8 @@ pipeline {
     stages {
         stage('Build') {
                     steps {
-                        git branch: 'main',
-                            credentialsId: 'ait-pipeline',
-                            url: 'git@github.com:Denjaa/athlone-institute-technology.git'
+                       git branch: 'main', url: 'https://github.com/Denjaa/athlone-institute-technology.git'
+
 
                         sh ('''
                             chmod +x gradlew
