@@ -5,10 +5,8 @@ pipeline {
     environment {
         SONAR = "true"
         GIT_BRANCH = "main"
-        GIT = "https://github.com/Denjaa/athlone-institute-technology.git"
+        GIT_HTTP_CLONE_URL= "https://github.com/Denjaa/athlone-institute-technology.git"
         GIT_CREDENTIAL_ID = "ait-pipeline"
-        GIT_SSH_CLONE_URL = "ssh://git@github.com:Denjaa/athlone-institute-technology.git"
-        
     }
 
     stages {
@@ -23,7 +21,7 @@ pipeline {
                             $class: 'GitSCM',
                             branches: [[name: "${env.GIT_BRANCH}"]],
                             doGenerateSubmoduleConfigurations: false, gitTool: 'Default', submoduleCfg: [],
-                            userRemoteConfigs: [[credentialsId: "${env.GIT_CREDENTIAL_ID}", url: "${env.GIT_SSH_CLONE_URL}"]]
+                            userRemoteConfigs: [[credentialsId: "${env.GIT_CREDENTIAL_ID}", url: "${env.GIT_HTTP_CLONE_URL}"]]
                         ]
                     )
                     env.CAPTURE_GIT_SHA = scmVars.GIT_COMMIT
