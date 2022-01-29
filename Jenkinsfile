@@ -19,7 +19,7 @@ pipeline {
                         changelog: true, poll: true,
                         scm: [
                             branches: [[name: "main"]],
-                            userRemoteConfigs: [[credentialsId: "${env.GIT_CREDENTIAL_ID}", url: "https://github.com/Denjaa/athlone-institute-technology.git"]]
+                            userRemoteConfigs: [[credentialsId: "ait-pipeline", url: "https://github.com/Denjaa/athlone-institute-technology.git"]]
                         ]
                     )
                     env.CAPTURE_GIT_SHA = scmVars.GIT_COMMIT
