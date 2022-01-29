@@ -4,26 +4,28 @@ pipeline {
 
     environment {
         SONAR = "true"
-        GIT_BRANCH = "main"
-        GIT_HTTP_CLONE_URL= "https://github.com/Denjaa/athlone-institute-technology.git"
-        GIT_CREDENTIAL_ID = "ait-pipeline"
     }
 
     stages {
+
         stage("Clone Source Code") {
             steps {
+                // deleting and cleaning up the working directory and preparation for new pull
                 deleteDir()
-                git branch: 'main', url: '${GIT_HTTP_CLONE_URL}'
+
+                // fetching the latest source and and application code from repository
+                git branch: 'main', url: 'https://github.com/Denjaa/athlone-institute-technology.git'
+
+                // setting up the running mode on the application of Gradle and all required permissions (executable)
+                sh ('chmod +x gradlew')
             }
         }
+
         stage('Build') {
                     steps {
-
-                        // setting up the running mode on the application of Gradle
                         // running the gradle clean mode to identify a new application
                         // running the gradle build mode to build the application
                         sh ('''
-                            chmod +x gradlew
                             ./gradlew clean
                             ./gradlew build
                         ''')
