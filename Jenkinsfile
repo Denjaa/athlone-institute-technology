@@ -57,7 +57,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 // building docker image based on the Dockerfile commands
-                sh ('docker build .')
+                sh ('./gradlew build docker')
             }
         }
 
@@ -65,7 +65,7 @@ pipeline {
             steps {
                 sh ('''
                     docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW
-                    docker push morozovd/continious-integration-and-development-assessment:0.1.0-SNAPSHOT
+                    docker push morozovd/continious-integration-and-development-assessment:1.0
                 ''')
             }
         }
