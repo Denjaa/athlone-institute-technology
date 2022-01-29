@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        SONAR = "true"
+        env.SONAR = "true"
         BRANCH = "main"
         GIT = "https://github.com/Denjaa/athlone-institute-technology.git"
     }
