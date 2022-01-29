@@ -10,22 +10,13 @@ pipeline {
     }
 
     stages {
-        stage("Source Code Checkout") {
+        stage("Clone Source") {
             steps {
+                // deleting and cleaning up environment before new job
                 deleteDir()
-                script {
-                    echo "trying to checkout branch  : ${env.GIT_BRANCH}"
-                    def scmVars = checkout (
-                        changelog: true, poll: true,
-                        scm: [
-                            $class: 'GitSCM',
-                            branches: [[name: "main"]],
-                            userRemoteConfigs: [[credentialsId: "ait-pipeline", url: "https://github.com/Denjaa/athlone-institute-technology.git"]]
-                        ]
-                    )
-                    env.CAPTURE_GIT_SHA = scmVars.GIT_COMMIT
-                    echo "${env.CAPTURE_GIT_SHA}"
-                }
+
+                // cloning the source code from GitHub
+                git url: 'https://github.com/Denjaa/athlone-institute-technology.git'
             }
         }
         stage('Build') {
