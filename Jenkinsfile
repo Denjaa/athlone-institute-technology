@@ -19,7 +19,7 @@ pipeline {
                         changelog: true, poll: true,
                         scm: [
                             $class: 'GitSCM',
-                            branches: [[name: "main"]],
+                            branches: [[name: "origin"]],
                             doGenerateSubmoduleConfigurations: false, gitTool: 'Default', submoduleCfg: [],
                             userRemoteConfigs: [[credentialsId: "${env.GIT_CREDENTIAL_ID}", url: "https://github.com/Denjaa/athlone-institute-technology.git"]]
                         ]
