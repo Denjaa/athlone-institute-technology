@@ -32,6 +32,7 @@ test {
     useJUnitPlatform()
 }
 
+
 String dockerHubUsernameProperty = findProperty('dockerHubUsername') ?: 'morozovd'
 String imageName = "${dockerHubUsernameProperty}/continious-integration-and-development-assessment:$version"
 
