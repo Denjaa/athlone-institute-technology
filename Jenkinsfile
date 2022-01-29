@@ -15,7 +15,7 @@ pipeline {
             steps {
                 deleteDir()
                 script {
-                    echo "trying to checkout branch : ${env.GIT_BRANCH}"
+                    echo "trying to checkout branch  : ${env.GIT_BRANCH}"
                     def scmVars = checkout (
                         changelog: true, poll: true,
                         scm: [
