@@ -1,12 +1,23 @@
+JENKINS_AGENT = 'any'
+
 pipeline {
-    agent any
+    agent ${JENKINS_AGENT}
+
+    environment {
+        ENV.SONAR = 'true'
+        ENV.BRANCH = 'main'
+        ENV.GIT = 'https://github.com/Denjaa/athlone-institute-technology.git'
+    }
 
     stages {
         stage('Build') {
                     steps {
-                       git branch: 'main', url: 'https://github.com/Denjaa/athlone-institute-technology.git'
+                       // pulling down the latest changes from remote repository
+                       git branch: '${ENV.BRANCH}', url: '${ENV.GIT}'
 
-
+                        // setting up the running mode on the application of Gradle
+                        // running the gradle clean mode to identify a new application
+                        // running the gradle build mode to build the application
                         sh ('''
                             chmod +x gradlew
                             ./gradlew clean
@@ -14,8 +25,6 @@ pipeline {
                         ''')
                     }
                 }
-
-
 
         stage('SonarQube Analysis') {
             steps {
