@@ -23,16 +23,17 @@ pipeline {
 
         stage('Build') {
                     steps {
-                        // running the gradle clean mode to identify a new application
-                        // running the gradle build mode to build the application
-                        sh ('''
-                            ./gradlew clean
-                            ./gradlew build
-                        ''')
+                        // Gradle clean the previous builds and build new project
+                        sh ('./gradlew clean build')
                     }
                 }
 
         stage('SonarQube Analysis') {
+            when {
+                  expression {
+                    SONAR == 'true'
+                  }
+            }
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh ('''
