@@ -10,10 +10,10 @@ pipeline {
     }
 
     stages {
-        stage("Source Code Checkout") {
+        stage("Clone Source Code") {
             steps {
                 deleteDir()
-                git branch: 'main', url: 'https://github.com/Denjaa/athlone-institute-technology.git'
+                git branch: 'main', url: '${GIT_HTTP_CLONE_URL}'
             }
         }
         stage('Build') {
