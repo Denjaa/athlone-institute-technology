@@ -4,11 +4,32 @@ pipeline {
 
     environment {
         SONAR = "true"
-        BRANCH = "main"
+        GIT_BRANCH = "main"
         GIT = "https://github.com/Denjaa/athlone-institute-technology.git"
+        GIT_CREDENTIAL_ID = "ait-pipeline"
+        GIT_SSH_CLONE_URL = "ssh://git@github.com:Denjaa/athlone-institute-technology.git"
     }
 
     stages {
+        stage("Source Code Checkout") {
+            steps {
+                deleteDir()
+                script {
+                    echo "trying to checkout branch : ${env.GIT_BRANCH}"
+                    def scmVars = checkout (
+                        changelog: true, poll: true,
+                        scm: [
+                            $class: 'GitSCM',
+                            branches: [[name: "${env.GIT_BRANCH}"]],
+                            doGenerateSubmoduleConfigurations: false, gitTool: 'Default', submoduleCfg: [],
+                            userRemoteConfigs: [[credentialsId: "${env.GIT_CREDENTIAL_ID}", url: "${env.GIT_SSH_CLONE_URL}"]]
+                        ]
+                    )
+                    env.CAPTURE_GIT_SHA = scmVars.GIT_COMMIT
+                    echo "${env.CAPTURE_GIT_SHA}"
+                }
+            }
+        }
         stage('Build') {
                     steps {
                         deleteDir()
