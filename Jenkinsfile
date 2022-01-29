@@ -1,17 +1,14 @@
 pipeline {
     agent any
 
-     options {
-            // This is required if you want to clean before build
-            skipDefaultCheckout(true)
-     }
-
     stages {
         stage('Build') {
                     steps {
+                        git branch: 'main',
+                            credentialsId: 'ait-pipeline',
+                            url: 'git@github.com:Denjaa/athlone-institute-technology.git'
 
                         sh ('''
-                            git branch: 'main', url: 'https://github.com/Denjaa/athlone-institute-technology.git'
                             chmod +x gradlew
                             ./gradlew clean
                             ./gradlew build
