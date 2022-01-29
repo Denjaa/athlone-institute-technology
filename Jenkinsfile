@@ -13,7 +13,7 @@ pipeline {
                     steps {
                         deleteDir()
                        // pulling down the latest changes from remote repository
-                       git branch: '${BRANCH}', url: '${GIT}'
+                       git branch: 'main', url: '${GIT}'
 
                         // setting up the running mode on the application of Gradle
                         // running the gradle clean mode to identify a new application
