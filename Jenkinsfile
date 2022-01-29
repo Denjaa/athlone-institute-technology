@@ -1,7 +1,7 @@
 JENKINS_AGENT = 'any'
 
 pipeline {
-    agent ${JENKINS_AGENT}
+    agent '${JENKINS_AGENT}'
 
     environment {
         ENV.SONAR = 'true'
